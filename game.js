@@ -1,4 +1,3 @@
-console.log('Hello everyone');
 
 /*
 -getComputerChoice - returns random slection from - "Rock" "Paper" "Scissors"
@@ -14,6 +13,12 @@ CHOOSE random option from the selection of 3 for the computer
 
  var playerSelection = prompt("Chose ur shit:",gameOptions).toLowerCase();
  playerSelection = (playerSelection[0].toUpperCase() + playerSelection.slice(1));
+
+
+ if ((randomComputerChoice == 'Rock') && (playerSelection == 'Paper')) {
+        console.log(humanWin + paperWins);
+    } else if ((randomComputerChoice == 'Rock') && (playerSelection == 'Scissors')) {
+            console.log(computerWin + rockWins)
 */
 
 
@@ -25,11 +30,31 @@ let randomComputerChoice = "";
 function getComputerChoice() {
     return randomComputerChoice = gameOptions[Math.floor(Math.random()*gameOptions.length)];
 }
+getComputerChoice();
 
+console.log(randomComputerChoice);
 /*Get player input, and correct it to right format*/
 playerSelection = '';
 while ((playerSelection !='Rock') && (playerSelection !='Paper') && (playerSelection !='Scissors')){
     playerSelection = prompt("Chose ur shit:",gameOptions).toLowerCase();
     playerSelection = (playerSelection[0].toUpperCase() + playerSelection.slice(1));
 }
+const humanWin = 'Human WINS! ';
+const computerWin = 'Human You LOST! ';
+const tieGame = "It's a tie!";
+const rockWins = 'Rock wins Scissors!';
+const paperWins = 'Paper wins Rock!';
+const scissorsWin = 'Scissors win Paper!';
+
+function playRound() {
+    if (playerSelection == 'Rock') {
+        if (randomComputerChoice == 'Paper') {
+            console.log(computerWin + paperWins);
+        } else if(randomComputerChoice == 'Scissors') {
+            console.log(humanWin + rockWins);
+        } else console.log(tieGame);
+    }
+}
+
+playRound();
 console.log(playerSelection);
