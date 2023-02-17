@@ -53,8 +53,22 @@ function playRound() {
         } else if(randomComputerChoice == 'Scissors') {
             console.log(humanWin + rockWins);
         } else console.log(tieGame);
+    } else if (playerSelection == 'Paper') {
+        if (randomComputerChoice == 'Rock') {
+            console.log(humanWin + paperWins);
+        } else if (randomComputerChoice == 'Scissors') {
+            console.log (computerWin + scissorsWin);
+        } else console.log(tieGame);
+    } else {
+        if (randomComputerChoice == 'Rock') {
+            console.log(computerWin + rockWins);
+        } else if (randomComputerChoice == 'Paper') {
+            console.log(humanWin + scissorsWin);
+        } else console.log(tieGame);
     }
 }
+
+
 
 playRound();
 console.log(playerSelection);
