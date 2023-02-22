@@ -29,6 +29,10 @@ function playerInput() {
     text = '';
 while ((text !='Rock') && (text !='Paper') && (text !='Scissors')){
     text = prompt("Chose ur shit:",gameOptions).toLowerCase();
+    if (text == null) {
+        alert('Refresh the page bro!' + text);
+        
+    }
     text = (text[0].toUpperCase() + text.slice(1));
     if ((text == 'Rock') || (text == 'Paper') || (text == 'Scissors')) {
         return text;
