@@ -7,12 +7,12 @@ body {
     flex-direction: column;
     background-color: antiquewhite;
     background-image: url(./media/white-paper-texture.jpg);
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace ,monospace;
 }
 .gameTitle {
     text-align: center;
     font-size: 64px;
-    margin: 30px 0px 30px 0px;
+    margin: 10px 0px 20px 0px;
 }
 .playerTitle {
     display: flex; 
@@ -71,6 +71,7 @@ img:hover + .iconText {
     transition-duration: 0.7s;
     transform: scale(1.5);
     
+    
 }
 .container {
     min-height: 100px;
@@ -84,13 +85,33 @@ img:hover + .iconText {
     min-height: 40px;
     margin-left: 0px;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     
     
 }
 
 .footerText {
-    margin-top: 15px;
     align-content: center;
-    
+    display: flex;
+    gap: 5px;
+}
+
+p {
+    align-self: center;
+}
+.container {
+    display: flex;
+    font-size: 90px;
+    justify-content: center;
+    gap: 100px;
+}
+.scoreBox {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 233, 185);
+    max-width: fit-content;
+    margin: auto;
+    padding: 3px 10px 3px 10px;
+    border-radius: 15px;
+    box-shadow: 3px 3px;
 }
