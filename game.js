@@ -24,7 +24,7 @@ function getComputerChoice() {
 }
 
 
-/*Get player input, and correct it to right format + wipe it for the loop*/
+/*Get player input, and correct it to right format + wipe it for the loop
 function playerInput() {
     text = '';
 while ((text !='Rock') && (text !='Paper') && (text !='Scissors')){
@@ -39,12 +39,12 @@ while ((text !='Rock') && (text !='Paper') && (text !='Scissors')){
         
     }
 }
-}
+}*/
 
 /*Plays one round and returns rounds result*/
-function playRound() {
+function playRound(text) {
 
-    let playerSelection = playerInput(text);
+    let playerSelection = text;
     let randomComputerChoice = getComputerChoice();
 
     if (playerSelection == 'Rock') {
@@ -94,4 +94,31 @@ function game() {
     } else console.warn('The game is TIE! What are the odds huh.?');
 }   
 
-game();
+/*Register buttons and make them do the round*/
+const btnRock = document.querySelector(".rock");
+btnRock.addEventListener('click', () => {
+    playRound('Rock');
+});
+const btnPaper = document.querySelector('.paper');
+btnPaper.addEventListener('click', () => {
+    game('Paper');
+});
+const btnScissors = document.querySelector('.scissors');
+btnScissors.addEventListener('click', () => {
+    game('Scissors');
+});
+
+/*
+const playerScore = document.querySelector('.playerScore');
+console.log(humanWin);
+const botScore = document.querySelector('botScore');
+
+let playerWins = 0;
+let botWin = 0;
+if (roundResult.includes(humanWin)) {
+    playerWins++;
+} else if (roundResult.includes(computerWin)) {
+    botWin++;
+}
+playerScore.innerHTML = playerWins;
+*/
