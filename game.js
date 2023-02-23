@@ -17,6 +17,7 @@ let gameOptions = ["Rock", "Paper", "Scissors"];
 text = '';
 let playerWins = 0;
 let botWin = 0;
+roundResult = '';
 
 
 
@@ -52,52 +53,80 @@ function playRound(text) {
         
     }
 }
+function gameOver(){
+    popup.classList.add('popUp')
+}
+function checkScore() {
+    if (playerWins === 5) {
+        console.log('Player Wins boi');
+        gameOver();
+    } else if (botWin === 5) {
+        console.log('Computer wins');
+        gameOver();
+    }
+}
 
 
 /*Register buttons and make them do the round*/
 const btnRock = document.querySelector(".rock");
 btnRock.addEventListener('click', () => {
-    if (playRound('Rock').includes(humanWin)) {
+    roundResult = playRound('Rock');
+    if (roundResult.includes(humanWin)) {
         playerWins++;
         playerScore.innerHTML = playerWins;
-    } else if (playRound('Rock').includes(computerWin)) {
+    } else if (roundResult.includes(computerWin)) {
         botWin++;
         botScore.innerHTML = botWin;
     }
+    checkScore();
+    console.log(roundResult);
 });
 
 const btnPaper = document.querySelector('.paper');
 btnPaper.addEventListener('click', () => {
-    if (playRound('Paper').includes(humanWin)) {
+    roundResult = playRound('Paper');
+    if (roundResult.includes(humanWin)) {
         playerWins++;
         playerScore.innerHTML = playerWins;
-    } else if (playRound('Paper').includes(computerWin)) {
+    } else if (roundResult.includes(computerWin)) {
         botWin++;
         botScore.innerHTML = botWin;
     }
+    checkScore();
 });
 
 const btnScissors = document.querySelector('.scissors');
 btnScissors.addEventListener('click', () => {
-    if (playRound('Scissors').includes(humanWin)) {
+    roundResult = playRound('Scissors')
+    if (roundResult.includes(humanWin)) {
         playerWins++;
         playerScore.innerHTML = playerWins;
-    } else if (playRound('Scissors').includes(computerWin)) {
+    } else if (roundResult.includes(computerWin)) {
         botWin++;
         botScore.innerHTML = botWin;
     }
+    checkScore();
+    roundOutcome.innerHTML = roundResult;
 });
 
 
 
 const playerScore = document.querySelector('.playerScore');
 const botScore = document.querySelector('.botScore');
+const roundOutcome = document.querySelector('.someText');
+const popup = document.querySelector('.hidden');
 
 
 
 
 
-/*Get player input, and correct it to right format + wipe it for the loop
+
+
+
+
+/*NO GUI BUILD
+
+//Get player input, and correct it to right format + wipe it for the loop//
 function playerInput() {
     text = '';
 while ((text !='Rock') && (text !='Paper') && (text !='Scissors')){
@@ -112,9 +141,9 @@ while ((text !='Rock') && (text !='Paper') && (text !='Scissors')){
         
     }
 }
-}*/
+}
 
-/*A game of x rounds, keeps score and returns the winner*/
+//A game of x rounds, keeps score and returns the winner//
 function game() {
 
     let playerWins = 0;
@@ -138,3 +167,4 @@ function game() {
         console.warn('Computer proves its supremacy! You LOST!');
     } else console.warn('The game is TIE! What are the odds huh.?');
 }   
+*/
