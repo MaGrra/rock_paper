@@ -27,9 +27,9 @@ function getComputerChoice() {
 }
 
 /*Plays one round and returns rounds result*/
-function playRound(text) {
+function playRound(choice) {
 
-    let playerSelection = text;
+    let playerSelection = choice;
     let randomComputerChoice = getComputerChoice();
 
     if (playerSelection == 'Rock') {
@@ -49,13 +49,15 @@ function playRound(text) {
             return computerWin + rockWins;
         } else if (randomComputerChoice == 'Paper') {
             return humanWin + scissorsWin;
+
         } else return tieGame;
         
     }
+    
 }
 function gameOver(txt){
     popup.classList.add('popUp');
-    popup.innerHTML = 'GAME OVER <br> ';
+    popup.innerHTML = `GAME OVER <br>${playerWins}:${botWin}` ;
     popup.appendChild(winner);
     winner.textContent = txt;
     popup.appendChild(replayBtn);
@@ -68,23 +70,32 @@ function gameOver(txt){
 }
 function checkScore() {
     if (playerWins === 5) {
-        console.log('Player Wins boi');
         gameOver(humanWin);
+        winSound.play();
     } else if (botWin === 5) {
-        console.log('Computer wins');
         gameOver(computerWin);
+        loseSound.play();
     }
+    roundOutcome.addEventListener('transitionend', removeTransition)
 }
 function reset () {
     popup.classList.remove('popUp');
     playerScore.innerHTML = playerWins;
     botScore.innerHTML = botWin;
+    roundOutcome.innerHTML = 'YOU KNOW THE RULES<br>GET 5 WINS'
+}
+function removeTransition(e) {
+    if (e.propertyName !== 'transform') return;
+    this.classList.remove('cool');
 }
 
 
 /*Register buttons and make them do the round*/
 const btnRock = document.querySelector(".rock");
 btnRock.addEventListener('click', () => {
+    sound.currentTime = 0;
+    sound.play();
+    roundOutcome.classList.add('cool');
     roundResult = playRound('Rock');
     if (roundResult.includes(humanWin)) {
         playerWins++;
@@ -95,10 +106,14 @@ btnRock.addEventListener('click', () => {
     }
     checkScore();
     console.log(roundResult);
+    roundOutcome.innerHTML = roundResult;
 });
 
 const btnPaper = document.querySelector('.paper');
 btnPaper.addEventListener('click', () => {
+    sound.currentTime = 0;
+    sound.play();
+    roundOutcome.classList.add('cool');
     roundResult = playRound('Paper');
     if (roundResult.includes(humanWin)) {
         playerWins++;
@@ -108,10 +123,16 @@ btnPaper.addEventListener('click', () => {
         botScore.innerHTML = botWin;
     }
     checkScore();
+    roundOutcome.innerHTML = roundResult;
+    
+
 });
 
 const btnScissors = document.querySelector('.scissors');
 btnScissors.addEventListener('click', () => {
+    sound.currentTime = 0;
+    sound.play();
+    roundOutcome.classList.add('cool');
     roundResult = playRound('Scissors')
     if (roundResult.includes(humanWin)) {
         playerWins++;
@@ -122,6 +143,7 @@ btnScissors.addEventListener('click', () => {
     }
     checkScore();
     roundOutcome.innerHTML = roundResult;
+
 });
 
 
@@ -131,10 +153,15 @@ const roundOutcome = document.querySelector('.someText');
 const popup = document.querySelector('.hidden');
 const winner = document.createElement('div');
 const replayBtn = document.createElement('button');
+const sound = document.querySelector('.sound');
+const winSound =document.querySelector('.win');
+const loseSound = document.querySelector('.lose');
 
 replayBtn.addEventListener('click', ()  => {
     reset();
 });
+
+
 
 
 
