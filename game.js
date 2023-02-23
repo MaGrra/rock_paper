@@ -53,17 +53,32 @@ function playRound(text) {
         
     }
 }
-function gameOver(){
-    popup.classList.add('popUp')
+function gameOver(txt){
+    popup.classList.add('popUp');
+    popup.innerHTML = 'GAME OVER <br> ';
+    popup.appendChild(winner);
+    winner.textContent = txt;
+    popup.appendChild(replayBtn);
+    replayBtn.innerHTML = 'PLAY AGAIN';
+    replayBtn.classList.add('replay')
+    playerWins = 0;
+    botWin = 0;
+    
+    
 }
 function checkScore() {
     if (playerWins === 5) {
         console.log('Player Wins boi');
-        gameOver();
+        gameOver(humanWin);
     } else if (botWin === 5) {
         console.log('Computer wins');
-        gameOver();
+        gameOver(computerWin);
     }
+}
+function reset () {
+    popup.classList.remove('popUp');
+    playerScore.innerHTML = playerWins;
+    botScore.innerHTML = botWin;
 }
 
 
@@ -110,11 +125,16 @@ btnScissors.addEventListener('click', () => {
 });
 
 
-
 const playerScore = document.querySelector('.playerScore');
 const botScore = document.querySelector('.botScore');
 const roundOutcome = document.querySelector('.someText');
 const popup = document.querySelector('.hidden');
+const winner = document.createElement('div');
+const replayBtn = document.createElement('button');
+
+replayBtn.addEventListener('click', ()  => {
+    reset();
+});
 
 
 
